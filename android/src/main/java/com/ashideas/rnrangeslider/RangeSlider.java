@@ -349,8 +349,10 @@ public class RangeSlider extends View {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                long pointerValue = getValueForPosition(event.getX(event.findPointerIndex(activePointerId)));
-                handleTouchMove(pointerValue);
+                if (event.findPointerIndex(activePointerId) != -1) {
+                    long pointerValue = getValueForPosition(event.getX(event.findPointerIndex(activePointerId)));
+                    handleTouchMove(pointerValue);
+                }
                 break;
             case MotionEvent.ACTION_UP:
                 activePointerId = -1;
